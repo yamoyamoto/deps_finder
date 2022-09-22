@@ -16,6 +16,14 @@ classDiagram
     }
     IDepsFinder<|..XXXFinder
     XXXFinder..>Parser
+    XXXFinder..>Dependencies
+    
+    class Dependencies{
+        -Nodes []Node
+        -Links []Link
+    }
+    Dependencies..>Node
+    Dependencies..>Link
     
     class File{
         -Path string
@@ -43,7 +51,4 @@ classDiagram
         Strength float64
     }
     Link..>Node
-    
-    XXXFinder..>Node
-    XXXFinder..>Link
 ```
