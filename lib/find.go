@@ -1,26 +1,23 @@
 package lib
 
 import (
-	"depsfinder/lib/models"
+	"depsfinder/lib/finders"
 	"log"
 )
 
 type DepsFinder interface {
-	Find() (*Dependencies, error)
+	Find(dirPath string) (*finders.Dependencies, error)
 }
 
-type Dependencies struct {
-	Nodes []models.Node
-	Links []models.Link
-}
-
-func FindDeps(depsFinder DepsFinder) error {
-	dependencies, err := depsFinder.Find()
+func FindDeps(depsFinder DepsFinder, dirPath string) error {
+	dependencies, err := depsFinder.Find(dirPath)
 	if err != nil {
 		return err
 	}
 
-	log.Printf("found dependencies: %#v", dependencies)
+	for _, link := range dependencies.Links {
+		log.Printf("found dependencies: %s->%s, strength: %d", link.From.Name, link.To.Name, link.Strength)
+	}
 
 	return nil
 }

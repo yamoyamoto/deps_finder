@@ -2,6 +2,8 @@ package models
 
 import (
 	"fmt"
+	"io/ioutil"
+	"os"
 	"regexp"
 )
 
@@ -56,4 +58,18 @@ func getFileTypeFromFilePath(filePath string) (FileType, error) {
 		}
 	}
 	return Unknown, nil
+}
+
+func (file File) GetContent() (string, error) {
+	f, err := os.Open(file.Path)
+	if err != nil {
+		return "", err
+	}
+	defer f.Close()
+
+	b, err := ioutil.ReadAll(f)
+	if err != nil {
+		return "", err
+	}
+	return string(b), nil
 }

@@ -2,22 +2,18 @@ package cmd
 
 import (
 	"depsfinder/lib"
+	"depsfinder/lib/finders"
+	"depsfinder/lib/services"
 	"github.com/spf13/cobra"
 	"log"
 )
 
-type TmpFinder struct{}
-
-func (finder TmpFinder) Find() (*lib.Dependencies, error) {
-	return nil, nil
-}
+var dirPath string
 
 var findDepsCmd = &cobra.Command{
 	Use: "find-deps",
 	Run: func(cmd *cobra.Command, args []string) {
-		tmpFinder := TmpFinder{}
-
-		err := lib.FindDeps(tmpFinder)
+		err := lib.FindDeps(finders.NewJavaDepsFinder(finders.NewJavaParser(), services.NewDirWalker()), dirPath)
 		if err != nil {
 			log.Fatalf("failed to find deps. err: %s", err)
 		}
