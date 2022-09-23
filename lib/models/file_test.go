@@ -6,8 +6,8 @@ import (
 	"testing"
 )
 
-func TestGetFileType(t *testing.T) {
-	t.Run("拡張子がマッチしていればそのFileTypeを返す", func(t *testing.T) {
+func TestNewFile(t *testing.T) {
+	t.Run("拡張子がマッチしていればそのFileTypeが入る", func(t *testing.T) {
 		testCases := []struct {
 			name     string
 			filePath string
@@ -24,32 +24,33 @@ func TestGetFileType(t *testing.T) {
 				models.TypeScript,
 			},
 			{
-				"GO",
+				"Go",
 				"/path/to/hugahuga.go",
 				models.Go,
+			},
+			{
+				"Java",
+				"/path/to/aiueo.java",
+				models.Java,
 			},
 		}
 
 		for _, tt := range testCases {
 			t.Run(tt.name, func(t *testing.T) {
-				file := models.File{
-					Path: tt.filePath,
-				}
-				fileType, err := file.GetFileType()
+				file, err := models.NewFile(tt.filePath)
 
 				assert.Nil(t, err)
-				assert.Equal(t, tt.expected, fileType)
+				assert.Equal(t, tt.filePath, file.Path)
+				assert.Equal(t, tt.expected, file.FileType)
 			})
 		}
 	})
 
-	t.Run("不明な拡張子の場合Unknownを返す", func(t *testing.T) {
-		unknownTypeFile := models.File{
-			Path: "path/to/unknown-file.txt",
-		}
-		fileType, err := unknownTypeFile.GetFileType()
+	t.Run("不明な拡張子の場合Unknownが入る", func(t *testing.T) {
+		file, err := models.NewFile("path/to/unknown-file.txt")
 
 		assert.Nil(t, err)
-		assert.Equal(t, models.Unknown, fileType)
+		assert.Equal(t, "path/to/unknown-file.txt", file.Path)
+		assert.Equal(t, models.Unknown, file.FileType)
 	})
 }

@@ -1,0 +1,3 @@
+[submodule "projects/logging-log4j2"]
+	path = projects/logging-log4j2
+	url = https://github.com/apache/logging-log4j2
