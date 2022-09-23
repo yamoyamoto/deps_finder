@@ -16,9 +16,7 @@ func (deps *Dependencies) Merge(mergedDeps *Dependencies) *Dependencies {
 		deps.Nodes = deps.Nodes.Add(node)
 	}
 	for _, link := range mergedDeps.Links {
-		if !link.In(deps.Links) {
-			deps.Links = deps.Links.Add(link)
-		}
+		deps.Links = deps.Links.Add(link)
 	}
 	return deps
 }
