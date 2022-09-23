@@ -3,10 +3,10 @@ package models
 import "reflect"
 
 type Node struct {
-	Id   int64
-	Name string
-	Path string
-	Size int64
+	Id   int64  `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Path string `json:"path,omitempty"`
+	Size int64  `json:"size,omitempty"`
 }
 
 func (node Node) In(nodes []Node) bool {
@@ -30,9 +30,9 @@ func (nodes Nodes) Add(node Node) Nodes {
 }
 
 type Link struct {
-	From     *Node
-	To       *Node
-	Strength int64
+	From     *Node `json:"from,omitempty"`
+	To       *Node `json:"to,omitempty"`
+	Strength int64 `json:"strength,omitempty"`
 }
 
 func (link Link) In(links []Link) bool {

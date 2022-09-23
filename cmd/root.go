@@ -47,4 +47,6 @@ func init() {
 	rootCmd.AddCommand(findDepsCmd)
 
 	findDepsCmd.Flags().StringVarP(&dirPath, "dir path", "d", "", "dir path")
+	findDepsCmd.Flags().StringVarP(&outputDirDirPath, "output dir path", "o", "", "output dir path")
+	findDepsCmd.Flags().StringVarP(&language, "language", "l", "", "language")
 }

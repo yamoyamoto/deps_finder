@@ -3,8 +3,8 @@ package finders
 import "depsfinder/lib/models"
 
 type Dependencies struct {
-	Nodes models.Nodes
-	Links models.Links
+	Nodes models.Nodes `json:"nodes"`
+	Links models.Links `json:"links"`
 }
 
 func (deps *Dependencies) Merge(mergedDeps *Dependencies) *Dependencies {
