@@ -32,6 +32,9 @@ func (finder *JavaDepsFinder) Find(dirPath string) (*Dependencies, error) {
 		Links: models.Links{},
 	}
 	for _, file := range files {
+		if file.FileType != models.Java {
+			continue
+		}
 		deps := finder.Parser.FindDependenciesFromFile(file)
 		dependencies = dependencies.Merge(deps)
 	}
