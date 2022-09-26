@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -49,4 +48,5 @@ func init() {
 	findDepsCmd.Flags().StringVarP(&dirPath, "dir path", "d", "", "dir path")
 	findDepsCmd.Flags().StringVarP(&outputDirDirPath, "output dir path", "o", "", "output dir path")
 	findDepsCmd.Flags().StringVarP(&language, "language", "l", "", "language")
+	findDepsCmd.Flags().StringVarP(&projectName, "project name", "p", "", "project name")
 }

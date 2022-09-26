@@ -1,3 +1,6 @@
 [submodule "projects/logging-log4j2"]
 	path = projects/logging-log4j2
 	url = https://github.com/apache/logging-log4j2
+[submodule "projects/spring-boot"]
+	path = projects/spring-boot
+	url = https://github.com/spring-projects/spring-boot.git

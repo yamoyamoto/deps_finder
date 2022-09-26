@@ -14,6 +14,7 @@ import (
 var dirPath string
 var outputDirDirPath string
 var language string
+var projectName string
 
 var allFinders = map[string]lib.DepsFinder{
 	"java": finders.NewJavaDepsFinder(finders.NewJavaParser(), services.NewDirWalker()),
@@ -37,7 +38,7 @@ var findDepsCmd = &cobra.Command{
 			log.Fatalf("failed to find deps. err: %s", err)
 		}
 
-		f, err := os.Create(path.Join(outputDirDirPath, language+".json"))
+		f, err := os.Create(path.Join(outputDirDirPath, language+"-"+projectName+".json"))
 		defer f.Close()
 
 		if err != nil {
